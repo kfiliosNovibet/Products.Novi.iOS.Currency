@@ -1,0 +1,8 @@
+{
+    "countryCode": "CY",
+    "locale": "el-GR",
+    "symbol": "€",
+    "symbolPosition": "right",
+    "decimalFormat": "%.2f",
+    "decimalNotation": "."
+}

@@ -1,0 +1,8 @@
+{
+    "countryCode": "MX",
+    "locale": "en-US",
+    "symbol": "MX$",
+    "symbolPosition": "left",
+    "decimalFormat": "%.2f",
+    "decimalNotation": "."
+}
