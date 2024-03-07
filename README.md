@@ -5,7 +5,7 @@
 
 # Currency Swift Package Manager for iOS
 
-This a Currency module for the iOS app
+This is a Currency module for the native iOS app
 
 ## Installation
 
