@@ -15,7 +15,7 @@ To integrate using Apple's [Swift Package Manager](https://swift.org/package-man
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/tpapazoglou/Products.Novi.iOS.Currency.git", from: "master")
+    .package(url: "https://github.com/tpapazoglou/Products.Novi.iOS.Currency.git", from: "main")
 ]
 ```
 
