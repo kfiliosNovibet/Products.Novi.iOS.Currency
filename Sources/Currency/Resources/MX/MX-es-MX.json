@@ -4,5 +4,6 @@
     "symbol": "$",
     "symbolPosition": "left",
     "decimalFormat": "%.2f",
-    "decimalNotation": "."
+    "decimalNotation": ".",
+    "groupingNotation": ","
 }

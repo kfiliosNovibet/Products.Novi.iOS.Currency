@@ -4,5 +4,6 @@
     "symbol": "€",
     "symbolPosition": "right",
     "decimalFormat": "%.2f",
-    "decimalNotation": ","
+    "decimalNotation": ",",
+    "groupingNotation": "."
 }

@@ -30,7 +30,7 @@ open class Currency {
     /// - Parameters:
     ///   - countryCode: The alpha-2 country code for the currency.
     ///   - languageSysname: The language sysname for the currency in the format "languageCode-CountryCode".
-    init(countryCode: String, languageSysname: String) {
+    public init(countryCode: String, languageSysname: String) {
         self.countryCode = countryCode
         self.languageSysname = languageSysname
         self.loadCurrencyData()
@@ -42,6 +42,20 @@ open class Currency {
     /// country code and language sysname.
     public func refresh() {
         loadCurrencyData()
+    }
+    
+    /// Returns the formatted string for the given double
+    ///
+    /// - Parameter amount: the amount to format into currency
+    public func currencyFormat(amount: Double) -> String? {
+        let numberFormatter = NumberFormatter()
+        let amountNSNumber = NSNumber(floatLiteral: amount)
+        numberFormatter.numberStyle = .currency
+        numberFormatter.currencySymbol = model?.symbol
+        numberFormatter.currencyDecimalSeparator = model?.decimalNotation.rawValue
+        numberFormatter.currencyGroupingSeparator = model?.groupingNotation.rawValue
+        numberFormatter.locale = Locale(identifier: languageSysname)
+        return numberFormatter.string(from: amountNSNumber)
     }
     
     // MARK: Private Methods

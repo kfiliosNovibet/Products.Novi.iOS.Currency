@@ -30,4 +30,5 @@ struct CurrencyModel: Codable {
     let symbolPosition: CurrencySymbolPosition
     let decimalFormat: String
     let decimalNotation: CurrencyDecimalNotation
+    let groupingNotation: CurrencyDecimalNotation
 }
