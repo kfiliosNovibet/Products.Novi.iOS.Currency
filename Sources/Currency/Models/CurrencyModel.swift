@@ -23,7 +23,7 @@ import Foundation
 ///     decimalNotation: "."
 /// )
 /// ```
-struct CurrencyModel: Codable {
+public struct CurrencyModel: Codable {
     let countryCode: String
     let locale: String
     let symbol: String

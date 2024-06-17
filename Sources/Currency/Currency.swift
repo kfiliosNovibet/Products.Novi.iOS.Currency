@@ -36,6 +36,18 @@ open class Currency {
         self.loadCurrencyData()
     }
     
+    /// Initializes a new instance of the `Currency` class.
+    ///
+    /// - Parameters:
+    ///   - countryCode: The alpha-2 country code for the currency.
+    ///   - languageSysname: The language sysname for the currency in the format "languageCode-CountryCode".
+    public init(currencyModel: CurrencyModel, lang: String) {
+        self.countryCode = currencyModel.countryCode
+        self.languageSysname = String(lang.prefix(2))
+        self.loadCurrencyData()
+    }
+    
+    
     // MARK: Public Methods
     
     /// Refreshes currency information by fetching data from a JSON file associated with the
