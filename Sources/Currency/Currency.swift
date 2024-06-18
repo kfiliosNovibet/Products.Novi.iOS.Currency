@@ -25,6 +25,11 @@ open class Currency {
     /// For ex. `el-GR`
     public var languageSysname: String
     
+    /// The getter for the currency symbol from the currency model
+    public var currencySymbol: String? {
+        return model?.symbol
+    }
+    
     /// Initializes a new instance of the `Currency` class.
     ///
     /// - Parameters:
@@ -39,8 +44,8 @@ open class Currency {
     /// Initializes a new instance of the `Currency` class.
     ///
     /// - Parameters:
-    ///   - countryCode: The alpha-2 country code for the currency.
-    ///   - languageSysname: The language sysname for the currency in the format "languageCode-CountryCode".
+    ///   - currencyModel: The already downloaded CurrencyModel.
+    ///   - lang: The language sysname for the currency in the format "languageCode-CountryCode".
     public init(currencyModel: CurrencyModel, lang: String) {
         self.countryCode = currencyModel.countryCode
         self.languageSysname = String(lang.prefix(2))
@@ -68,6 +73,14 @@ open class Currency {
         numberFormatter.currencyGroupingSeparator = model?.groupingNotation.rawValue
         numberFormatter.locale = Locale(identifier: languageSysname)
         return numberFormatter.string(from: amountNSNumber)
+    }
+    
+    /// Removes the currency symbol from the given string
+    ///
+    /// - Parameter string: the string from which to remove the currency symbol
+    public func removeCurrency(from string: String) -> String? {
+        guard let currencySymbol = model?.symbol else { return nil }
+        return string.replacingOccurrences(of: currencySymbol, with: "")
     }
     
     // MARK: Private Methods
