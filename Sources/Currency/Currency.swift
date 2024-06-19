@@ -90,7 +90,7 @@ open class Currency {
     /// The JSON file should be named "\(countryCode)-\(languageSysname).json".
     ///
     private func loadCurrencyData() {
-        guard let fileURL = Bundle.module.url(forResource: "\(countryCode)-\(languageSysname)", withExtension: "json") else { return }
+        guard let fileURL = Bundle.module.url(forResource: "\(countryCode.uppercased())-\(languageSysname.lowercased())", withExtension: "json") else { return }
         guard let jsonData = try? Data(contentsOf: fileURL) else { return }
         let decoder = JSONDecoder()
         let model = try? decoder.decode(CurrencyModel.self, from: jsonData)
