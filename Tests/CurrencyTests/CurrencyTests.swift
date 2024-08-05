@@ -23,9 +23,9 @@ final class CurrencyTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 2.0)
         XCTAssertNotNil(currency.model, "Currency model should not be nil after fetching data")
-        XCTAssertEqual(currency.model?.symbol, "€")
+        XCTAssertEqual(currency.model?.currencySymbol, "€")
         XCTAssertEqual(currency.model?.decimalNotation, CurrencyDecimalNotation.comma)
-        XCTAssertEqual(currency.model?.symbolPosition, CurrencySymbolPosition.right)
+        XCTAssertEqual(currency.model?.symbolPosition, CurrencySymbolPosition.end)
         XCTAssertEqual(currency.model?.decimalFormat, "%.2f")
     }
     

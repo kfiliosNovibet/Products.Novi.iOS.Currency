@@ -25,16 +25,33 @@ open class Currency {
     /// For ex. `el-GR`
     public var languageSysname: String
     
+    /// The getter for the currency symbol from the currency model
+    public var currencySymbol: String? {
+        return model?.currencySymbol
+    }
+    
     /// Initializes a new instance of the `Currency` class.
     ///
     /// - Parameters:
     ///   - countryCode: The alpha-2 country code for the currency.
     ///   - languageSysname: The language sysname for the currency in the format "languageCode-CountryCode".
-    init(countryCode: String, languageSysname: String) {
+    public init(countryCode: String, languageSysname: String) {
         self.countryCode = countryCode
         self.languageSysname = languageSysname
         self.loadCurrencyData()
     }
+    
+    /// Initializes a new instance of the `Currency` class.
+    ///
+    /// - Parameters:
+    ///   - currencyModel: The already downloaded CurrencyModel.
+    ///   - lang: The language sysname for the currency in the format "languageCode-CountryCode".
+    public init(currencyModel: CurrencyModel, lang: String) {
+        self.countryCode = currencyModel.countryCode
+        self.model = currencyModel
+        self.languageSysname = String(lang.prefix(2))
+    }
+    
     
     // MARK: Public Methods
     
@@ -44,6 +61,28 @@ open class Currency {
         loadCurrencyData()
     }
     
+    /// Returns the formatted string for the given double
+    ///
+    /// - Parameter amount: the amount to format into currency
+    public func currencyFormat(amount: Double) -> String? {
+        let numberFormatter = NumberFormatter()
+        let amountNSNumber = NSNumber(floatLiteral: amount)
+        numberFormatter.numberStyle = .currency
+        numberFormatter.currencySymbol = model?.currencySymbol
+        numberFormatter.currencyDecimalSeparator = model?.decimalNotation.rawValue
+        numberFormatter.currencyGroupingSeparator = model?.groupingNotation.rawValue
+        numberFormatter.locale = Locale(identifier: languageSysname)
+        return numberFormatter.string(from: amountNSNumber)
+    }
+    
+    /// Removes the currency symbol from the given string
+    ///
+    /// - Parameter string: the string from which to remove the currency symbol
+    public func removeCurrency(from string: String) -> String? {
+        guard let currencySymbol = model?.currencySymbol else { return nil }
+        return string.replacingOccurrences(of: currencySymbol, with: "")
+    }
+    
     // MARK: Private Methods
     
     /// Fetches currency information from a JSON file located in the main bundle.
@@ -51,7 +90,7 @@ open class Currency {
     /// The JSON file should be named "\(countryCode)-\(languageSysname).json".
     ///
     private func loadCurrencyData() {
-        guard let fileURL = Bundle.module.url(forResource: "\(countryCode)-\(languageSysname)", withExtension: "json") else { return }
+        guard let fileURL = Bundle.module.url(forResource: "\(countryCode.uppercased())-\(languageSysname.lowercased())", withExtension: "json") else { return }
         guard let jsonData = try? Data(contentsOf: fileURL) else { return }
         let decoder = JSONDecoder()
         let model = try? decoder.decode(CurrencyModel.self, from: jsonData)

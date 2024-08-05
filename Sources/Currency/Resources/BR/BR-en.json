@@ -1,0 +1,11 @@
+{
+    "countryCode": "BR",
+    "locale": "en-BR",
+    "currencySymbol": "€",
+    "symbolPosition": "end",
+    "decimalFormat": "%.2f",
+    "decimalNotation": ".",
+    "groupingNotation": ",",
+    "formatPattern": "#,##0.00",
+    "hasCurrencySpace": true
+}

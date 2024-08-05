@@ -23,11 +23,13 @@ import Foundation
 ///     decimalNotation: "."
 /// )
 /// ```
-struct CurrencyModel: Codable {
+public struct CurrencyModel: Codable {
     let countryCode: String
     let locale: String
-    let symbol: String
+    let currencySymbol: String
     let symbolPosition: CurrencySymbolPosition
     let decimalFormat: String
     let decimalNotation: CurrencyDecimalNotation
+    let groupingNotation: CurrencyDecimalNotation
+    let hasCurrencySpace: Bool
 }
