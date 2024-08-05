@@ -27,7 +27,7 @@ open class Currency {
     
     /// The getter for the currency symbol from the currency model
     public var currencySymbol: String? {
-        return model?.symbol
+        return model?.currencySymbol
     }
     
     /// Initializes a new instance of the `Currency` class.
@@ -48,8 +48,8 @@ open class Currency {
     ///   - lang: The language sysname for the currency in the format "languageCode-CountryCode".
     public init(currencyModel: CurrencyModel, lang: String) {
         self.countryCode = currencyModel.countryCode
+        self.model = currencyModel
         self.languageSysname = String(lang.prefix(2))
-        self.loadCurrencyData()
     }
     
     
@@ -68,7 +68,7 @@ open class Currency {
         let numberFormatter = NumberFormatter()
         let amountNSNumber = NSNumber(floatLiteral: amount)
         numberFormatter.numberStyle = .currency
-        numberFormatter.currencySymbol = model?.symbol
+        numberFormatter.currencySymbol = model?.currencySymbol
         numberFormatter.currencyDecimalSeparator = model?.decimalNotation.rawValue
         numberFormatter.currencyGroupingSeparator = model?.groupingNotation.rawValue
         numberFormatter.locale = Locale(identifier: languageSysname)
@@ -79,7 +79,7 @@ open class Currency {
     ///
     /// - Parameter string: the string from which to remove the currency symbol
     public func removeCurrency(from string: String) -> String? {
-        guard let currencySymbol = model?.symbol else { return nil }
+        guard let currencySymbol = model?.currencySymbol else { return nil }
         return string.replacingOccurrences(of: currencySymbol, with: "")
     }
     

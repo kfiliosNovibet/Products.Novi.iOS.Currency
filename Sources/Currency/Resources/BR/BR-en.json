@@ -1,11 +1,11 @@
 {
-    "countryCode": "ΙΕ",
-    "locale": "en-IE",
+    "countryCode": "BR",
+    "locale": "en-BR",
     "currencySymbol": "€",
-    "symbolPosition": "start",
+    "symbolPosition": "end",
     "decimalFormat": "%.2f",
     "decimalNotation": ".",
     "groupingNotation": ",",
     "formatPattern": "#,##0.00",
-    "hasCurrencySpace": false
+    "hasCurrencySpace": true
 }

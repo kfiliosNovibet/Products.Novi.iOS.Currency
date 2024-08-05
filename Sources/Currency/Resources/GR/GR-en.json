@@ -1,9 +1,11 @@
 {
     "countryCode": "GR",
-    "locale": "en-US",
-    "symbol": "€",
-    "symbolPosition": "right",
+    "locale": "en-GR",
+    "currencySymbol": "€",
+    "symbolPosition": "start",
     "decimalFormat": "%.2f",
     "decimalNotation": ".",
-    "groupingNotation": ","
+    "groupingNotation": ",",
+    "formatPattern": "#,##0.00",
+    "hasCurrencySpace": false
 }

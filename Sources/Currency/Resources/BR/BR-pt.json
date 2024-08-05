@@ -1,8 +1,8 @@
 {
-    "countryCode": "CY",
-    "locale": "el-GR",
-    "currencySymbol": "€",
-    "symbolPosition": "end",
+    "countryCode": "BR",
+    "locale": "pt-BR",
+    "currencySymbol": "R$",
+    "symbolPosition": "start",
     "decimalFormat": "%.2f",
     "decimalNotation": ",",
     "groupingNotation": ".",

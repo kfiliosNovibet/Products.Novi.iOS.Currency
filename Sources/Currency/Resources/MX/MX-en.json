@@ -1,9 +1,11 @@
 {
     "countryCode": "MX",
-    "locale": "en-US",
-    "symbol": "MX$",
-    "symbolPosition": "left",
+    "locale": "en-MX",
+    "currencySymbol": "MX$",
+    "symbolPosition": "start",
     "decimalFormat": "%.2f",
     "decimalNotation": ".",
-    "groupingNotation": ","
+    "groupingNotation": ",",
+    "formatPattern": "#,##0.00",
+    "hasCurrencySpace": false
 }
