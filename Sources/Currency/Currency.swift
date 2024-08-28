@@ -79,8 +79,14 @@ open class Currency {
     ///
     /// - Parameter string: the string from which to remove the currency symbol
     public func removeCurrency(from string: String) -> String? {
-        guard let currencySymbol = model?.currencySymbol else { return nil }
-        return string.replacingOccurrences(of: currencySymbol, with: "")
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .currency
+        numberFormatter.currencySymbol = model?.currencySymbol
+        numberFormatter.currencyDecimalSeparator = model?.decimalNotation.rawValue
+        numberFormatter.currencyGroupingSeparator = model?.groupingNotation.rawValue
+        numberFormatter.locale = Locale(identifier: languageSysname)
+        guard let number = numberFormatter.number(from: string) else { return nil }
+        return "\(number)"
     }
     
     // MARK: Private Methods
