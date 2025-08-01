@@ -16,7 +16,7 @@ final class CurrencyTests: XCTestCase {
     }
     
     func testLoadCurrencyData() {
-        let currency = Currency(countryCode: "GR", languageSysname: "el-GR")
+        let currency = Currency(countryCode: "GR", languageSysname: "el")
         let expectation = expectation(description: "Currency data loaded")
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             expectation.fulfill()
@@ -30,11 +30,19 @@ final class CurrencyTests: XCTestCase {
     }
     
     func testRefresh() {
-        let currency = CurrencyMock(countryCode: "GR", languageSysname: "el-GR")
+        let currency = CurrencyMock(countryCode: "GR", languageSysname: "el")
         XCTAssertEqual(currency.model?.decimalNotation, CurrencyDecimalNotation.comma)
-        currency.setLanguageSysname("en-US")
+        currency.setLanguageSysname("en")
         currency.refresh()
         XCTAssertEqual(currency.model?.decimalNotation, CurrencyDecimalNotation.dot)
+    }
+
+    func testLocaleFormat() {
+        let currency = CurrencyMock(countryCode: "GR", languageSysname: "el")
+        XCTAssertEqual(currency.model?.decimalNotation, CurrencyDecimalNotation.comma)
+        currency.setLanguageSysname("el-GR")
+        let localeFormat = currency.localeFormat(amount: 2130.60)
+        XCTAssertEqual(localeFormat, "2.130,60")
     }
 }
 

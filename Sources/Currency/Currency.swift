@@ -74,7 +74,21 @@ open class Currency {
         numberFormatter.locale = Locale(identifier: languageSysname)
         return numberFormatter.string(from: amountNSNumber)
     }
-    
+
+
+    /// Returns the formatted string for the given double
+    ///
+    /// - Parameter amount: the amount to format to user Locale
+    public func localeFormat(amount: Double) -> String? {
+        let numberFormatter = NumberFormatter()
+        let amountNSNumber = NSNumber(floatLiteral: amount)
+        numberFormatter.numberStyle = .currency
+        numberFormatter.currencySymbol = ""
+        numberFormatter.currencyDecimalSeparator = model?.decimalNotation.rawValue
+        numberFormatter.currencyGroupingSeparator = model?.groupingNotation.rawValue
+        numberFormatter.locale = Locale(identifier: languageSysname)
+        return numberFormatter.string(from: amountNSNumber)?.trimmingCharacters(in: .whitespaces)
+    }
     /// - Parameter string: the amount to format into currency
     public func currencyFormatWithoutTrailingZeroes(amount: Double) -> String? {
         let numberFormatter = NumberFormatter()
