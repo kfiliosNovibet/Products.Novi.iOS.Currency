@@ -24,12 +24,12 @@ import Foundation
 /// )
 /// ```
 public struct CurrencyModel: Codable {
-    let countryCode: String
-    let locale: String
-    let currencySymbol: String
-    let symbolPosition: CurrencySymbolPosition
-    let decimalFormat: String
-    let decimalNotation: CurrencyDecimalNotation
-    let groupingNotation: CurrencyDecimalNotation
-    let hasCurrencySpace: Bool
+    public let countryCode: String
+    public let locale: String
+    public let currencySymbol: String
+    public let symbolPosition: CurrencySymbolPosition
+    public let decimalFormat: String
+    public let decimalNotation: CurrencyDecimalNotation
+    public let groupingNotation: CurrencyDecimalNotation
+    public let hasCurrencySpace: Bool
 }

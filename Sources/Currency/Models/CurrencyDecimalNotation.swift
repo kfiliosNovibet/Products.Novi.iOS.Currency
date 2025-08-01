@@ -13,7 +13,7 @@ import Foundation
 ///
 public enum CurrencyDecimalNotation: String, Codable {
     /// Decimal notation using a dot (e.g., "100.00").
-    case dot = "."
+    public case dot = "."
     /// Decimal notation using a comma (e.g., "100,00").
-    case comma = ","
+    public case comma = ","
 }
