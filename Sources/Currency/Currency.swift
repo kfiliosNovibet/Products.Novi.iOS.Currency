@@ -13,7 +13,7 @@ import Foundation
 /// and language sysname.
 open class Currency {
     /// The model containing additional details about the currency, such as locale, symbol, etc.
-    private (set) var model: CurrencyModel?
+    private(set) var model: CurrencyModel?
     
     /// The alpha-2 country code for the currency.
     ///
@@ -46,12 +46,11 @@ open class Currency {
     /// - Parameters:
     ///   - currencyModel: The already downloaded CurrencyModel.
     ///   - lang: The language sysname for the currency in the format "languageCode-CountryCode".
-    public init(currencyModel: CurrencyModel, lang: String) {
+    public init(currencyModel: CurrencyModel) {
         self.countryCode = currencyModel.countryCode
         self.model = currencyModel
-        self.languageSysname = String(lang.prefix(2))
+        self.languageSysname = currencyModel.locale
     }
-    
     
     // MARK: Public Methods
     
@@ -124,7 +123,7 @@ open class Currency {
     /// The JSON file should be named "\(countryCode)-\(languageSysname).json".
     ///
     private func loadCurrencyData() {
-        guard let fileURL = Bundle.module.url(forResource: "\(countryCode.uppercased())-\(languageSysname.lowercased())", withExtension: "json") else { return }
+        guard let fileURL = Bundle.module.url(forResource: "\(countryCode.uppercased())-\(languageSysname.prefix(2).lowercased())", withExtension: "json") else { return }
         guard let jsonData = try? Data(contentsOf: fileURL) else { return }
         let decoder = JSONDecoder()
         let model = try? decoder.decode(CurrencyModel.self, from: jsonData)
