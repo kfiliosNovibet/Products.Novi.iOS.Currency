@@ -46,7 +46,7 @@ open class Currency {
     /// - Parameters:
     ///   - currencyModel: The already downloaded CurrencyModel.
     ///   - lang: The language sysname for the currency in the format "languageCode-CountryCode".
-    public init(currencyModel: CurrencyModel, lang: String) {
+    public init(currencyModel: CurrencyModel) {
         self.countryCode = currencyModel.countryCode
         self.model = currencyModel
         self.languageSysname = currencyModel.locale
