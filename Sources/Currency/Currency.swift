@@ -49,7 +49,7 @@ open class Currency {
     public init(currencyModel: CurrencyModel, lang: String) {
         self.countryCode = currencyModel.countryCode
         self.model = currencyModel
-        self.languageSysname = String(lang.prefix(2))
+        self.languageSysname = lang
     }
     
     
@@ -71,7 +71,7 @@ open class Currency {
         numberFormatter.currencySymbol = model?.currencySymbol
         numberFormatter.currencyDecimalSeparator = model?.decimalNotation.rawValue
         numberFormatter.currencyGroupingSeparator = model?.groupingNotation.rawValue
-        numberFormatter.locale = Locale(identifier: languageSysname + "-" + countryCode)
+        numberFormatter.locale = Locale(identifier: languageSysname)
         return numberFormatter.string(from: amountNSNumber)
     }
 
@@ -86,7 +86,7 @@ open class Currency {
         numberFormatter.currencySymbol = ""
         numberFormatter.currencyDecimalSeparator = model?.decimalNotation.rawValue
         numberFormatter.currencyGroupingSeparator = model?.groupingNotation.rawValue
-        numberFormatter.locale = Locale(identifier: languageSysname + "-" + countryCode)
+        numberFormatter.locale = Locale(identifier: languageSysname)
         return numberFormatter.string(from: amountNSNumber)?.trimmingCharacters(in: .whitespaces)
     }
     /// - Parameter string: the amount to format into currency
@@ -99,7 +99,7 @@ open class Currency {
         numberFormatter.currencyGroupingSeparator = model?.groupingNotation.rawValue
         numberFormatter.minimumFractionDigits = 0
         numberFormatter.maximumFractionDigits = 2
-        numberFormatter.locale = Locale(identifier: languageSysname + "-" + countryCode)
+        numberFormatter.locale = Locale(identifier: languageSysname)
         return numberFormatter.string(from: amountNSNumber)
     }
     
@@ -112,7 +112,7 @@ open class Currency {
         numberFormatter.currencySymbol = model?.currencySymbol
         numberFormatter.currencyDecimalSeparator = model?.decimalNotation.rawValue
         numberFormatter.currencyGroupingSeparator = model?.groupingNotation.rawValue
-        numberFormatter.locale = Locale(identifier: languageSysname + "-" + countryCode)
+        numberFormatter.locale = Locale(identifier: languageSysname)
         guard let number = numberFormatter.number(from: string) else { return nil }
         return "\(number)"
     }
@@ -124,7 +124,7 @@ open class Currency {
     /// The JSON file should be named "\(countryCode)-\(languageSysname).json".
     ///
     private func loadCurrencyData() {
-        guard let fileURL = Bundle.module.url(forResource: "\(countryCode.uppercased())-\(languageSysname.lowercased())", withExtension: "json") else { return }
+        guard let fileURL = Bundle.module.url(forResource: "\(countryCode.uppercased())-\(languageSysname.prefix(2).lowercased())", withExtension: "json") else { return }
         guard let jsonData = try? Data(contentsOf: fileURL) else { return }
         let decoder = JSONDecoder()
         let model = try? decoder.decode(CurrencyModel.self, from: jsonData)
