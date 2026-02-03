@@ -49,9 +49,8 @@ open class Currency {
     public init(currencyModel: CurrencyModel, lang: String) {
         self.countryCode = currencyModel.countryCode
         self.model = currencyModel
-        self.languageSysname = lang
+        self.languageSysname = currencyModel.locale
     }
-    
     
     // MARK: Public Methods
     
