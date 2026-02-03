@@ -13,7 +13,7 @@ import Foundation
 /// and language sysname.
 open class Currency {
     /// The model containing additional details about the currency, such as locale, symbol, etc.
-    private (set) var model: CurrencyModel?
+    private(set) var model: CurrencyModel?
     
     /// The alpha-2 country code for the currency.
     ///
@@ -112,7 +112,7 @@ open class Currency {
         numberFormatter.currencySymbol = model?.currencySymbol
         numberFormatter.currencyDecimalSeparator = model?.decimalNotation.rawValue
         numberFormatter.currencyGroupingSeparator = model?.groupingNotation.rawValue
-        numberFormatter.locale = Locale(identifier: languageSysname)
+        numberFormatter.locale = Locale(identifier: languageSysname + "-" + countryCode)
         guard let number = numberFormatter.number(from: string) else { return nil }
         return "\(number)"
     }
