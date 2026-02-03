@@ -1,0 +1,11 @@
+{
+  "countryCode": "EC",
+  "locale": "es-EC",
+  "currencySymbol": "$",
+  "symbolPosition": "start",
+  "decimalFormat": "%.2f",
+  "decimalNotation": ",",
+  "groupingNotation": ".",
+  "formatPattern": "#,##0.00",
+  "hasCurrencySpace": false
+}
