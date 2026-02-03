@@ -71,7 +71,7 @@ open class Currency {
         numberFormatter.currencySymbol = model?.currencySymbol
         numberFormatter.currencyDecimalSeparator = model?.decimalNotation.rawValue
         numberFormatter.currencyGroupingSeparator = model?.groupingNotation.rawValue
-        numberFormatter.locale = Locale(identifier: languageSysname)
+        numberFormatter.locale = Locale(identifier: languageSysname + "-" + countryCode)
         return numberFormatter.string(from: amountNSNumber)
     }
 
@@ -86,7 +86,7 @@ open class Currency {
         numberFormatter.currencySymbol = ""
         numberFormatter.currencyDecimalSeparator = model?.decimalNotation.rawValue
         numberFormatter.currencyGroupingSeparator = model?.groupingNotation.rawValue
-        numberFormatter.locale = Locale(identifier: languageSysname)
+        numberFormatter.locale = Locale(identifier: languageSysname + "-" + countryCode)
         return numberFormatter.string(from: amountNSNumber)?.trimmingCharacters(in: .whitespaces)
     }
     /// - Parameter string: the amount to format into currency
@@ -99,7 +99,7 @@ open class Currency {
         numberFormatter.currencyGroupingSeparator = model?.groupingNotation.rawValue
         numberFormatter.minimumFractionDigits = 0
         numberFormatter.maximumFractionDigits = 2
-        numberFormatter.locale = Locale(identifier: languageSysname)
+        numberFormatter.locale = Locale(identifier: languageSysname + "-" + countryCode)
         return numberFormatter.string(from: amountNSNumber)
     }
     
