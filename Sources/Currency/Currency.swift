@@ -102,6 +102,19 @@ open class Currency {
         return numberFormatter.string(from: amountNSNumber)
     }
     
+    public func currencyFormatWithTrailingZeroes(amount: Double, minTrailingZeroes: Int, maxTrailingZeroes: Int) -> String? {
+        let numberFormatter = NumberFormatter()
+        let amountNSNumber = NSNumber(floatLiteral: amount)
+        numberFormatter.numberStyle = .currency
+        numberFormatter.currencySymbol = model?.currencySymbol
+        numberFormatter.currencyDecimalSeparator = model?.decimalNotation.rawValue
+        numberFormatter.currencyGroupingSeparator = model?.groupingNotation.rawValue
+        numberFormatter.minimumFractionDigits = minTrailingZeroes
+        numberFormatter.maximumFractionDigits = maxTrailingZeroes
+        numberFormatter.locale = Locale(identifier: languageSysname)
+        return numberFormatter.string(from: amountNSNumber)
+    }
+    
     /// Removes the currency symbol from the given string
     ///
     /// - Parameter string: the string from which to remove the currency symbol
