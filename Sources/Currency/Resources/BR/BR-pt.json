@@ -1,5 +1,6 @@
 {
     "countryCode": "BR",
+    "currencyCode": "BRL",
     "locale": "pt-BR",
     "currencySymbol": "R$",
     "symbolPosition": "start",

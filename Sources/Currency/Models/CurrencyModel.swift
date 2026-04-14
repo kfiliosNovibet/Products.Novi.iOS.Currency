@@ -25,6 +25,7 @@ import Foundation
 /// ```
 public struct CurrencyModel: Codable {
     public let countryCode: String
+    public let currencyCode: String
     public let locale: String
     public let currencySymbol: String
     public let symbolPosition: CurrencySymbolPosition

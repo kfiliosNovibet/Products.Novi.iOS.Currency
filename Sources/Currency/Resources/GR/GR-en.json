@@ -1,5 +1,6 @@
 {
     "countryCode": "GR",
+    "currencyCode": "EUR",
     "locale": "en-GR",
     "currencySymbol": "€",
     "symbolPosition": "start",
