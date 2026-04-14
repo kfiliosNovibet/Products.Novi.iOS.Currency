@@ -16,7 +16,7 @@ import Foundation
 /// ```swift
 /// let currencyInfo = CurrencyModel(
 ///     countryCode: "GR",
-///     currencyCode: "EUR",
+///     currencyCode: "EUR",   // optional; omit or pass nil for legacy payloads
 ///     locale: "el-GR",
 ///     currencySymbol: "€",
 ///     symbolPosition: .end,
@@ -31,7 +31,10 @@ public struct CurrencyModel: Codable {
     public let countryCode: String
 
     /// The ISO 4217 currency code (e.g., `EUR`, `USD`).
-    public let currencyCode: String
+    ///
+    /// Optional for backward compatibility: older encoded payloads or JSON files that predate
+    /// this field will decode successfully and produce `nil` here rather than throwing.
+    public let currencyCode: String?
 
     /// The locale identifier in "languageCode-CountryCode" format (e.g., `el-GR`, `en-US`).
     public let locale: String

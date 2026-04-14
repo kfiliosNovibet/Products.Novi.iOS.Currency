@@ -11,7 +11,8 @@ import Foundation
 ///
 /// Use this class to represent a specific currency configuration and format monetary amounts
 /// according to the currency's locale, symbol, decimal notation, and grouping rules.
-/// The class loads its configuration from a bundled JSON file keyed by country code and locale.
+/// Configuration is loaded from a bundled JSON file selected by `countryCode` (uppercased) and
+/// the first two characters of `languageSysname` (the language code), e.g. `"GR-el.json"`.
 open class Currency {
     /// The model containing additional details about the currency, such as locale, symbol, etc.
     private(set) var model: CurrencyModel?
@@ -148,9 +149,10 @@ open class Currency {
     
     // MARK: Private Methods
     
-    /// Fetches currency information from a JSON file located in the main bundle.
+    /// Fetches currency information from a JSON file located in the module bundle.
     ///
-    /// The JSON file should be named "\(countryCode)-\(languageSysname).json".
+    /// The JSON file is looked up by combining `countryCode` (uppercased) and the first two
+    /// characters of `languageSysname` (lowercased language code), e.g. `"GR-el.json"`.
     ///
     private func loadCurrencyData() {
         guard let fileURL = Bundle.module.url(forResource: "\(countryCode.uppercased())-\(languageSysname.prefix(2).lowercased())", withExtension: "json") else { return }

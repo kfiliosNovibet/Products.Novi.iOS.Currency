@@ -70,7 +70,8 @@ final class CurrencyTests: XCTestCase {
         let currency = Currency(countryCode: "BR", languageSysname: "en")
         XCTAssertNotNil(currency.model)
         XCTAssertEqual(currency.model?.currencyCode, "BRL")
-        XCTAssertEqual(currency.model?.symbolPosition, .end)
+        XCTAssertEqual(currency.model?.currencySymbol, "R$")
+        XCTAssertEqual(currency.model?.symbolPosition, .start)
         XCTAssertEqual(currency.model?.hasCurrencySpace, true)
     }
 
