@@ -7,10 +7,11 @@
 
 import Foundation
 
-/// A final class representing currency information.
+/// A class that encapsulates currency information and provides formatting utilities.
 ///
-/// Use this class to encapsulate details about a specific currency, including its country code
-/// and language sysname.
+/// Use this class to represent a specific currency configuration and format monetary amounts
+/// according to the currency's locale, symbol, decimal notation, and grouping rules.
+/// The class loads its configuration from a bundled JSON file keyed by country code and locale.
 open class Currency {
     /// The model containing additional details about the currency, such as locale, symbol, etc.
     private(set) var model: CurrencyModel?
@@ -60,9 +61,10 @@ open class Currency {
         loadCurrencyData()
     }
     
-    /// Returns the formatted string for the given double
+    /// Returns the formatted currency string for the given amount.
     ///
-    /// - Parameter amount: the amount to format into currency
+    /// - Parameter amount: The amount to format.
+    /// - Returns: A formatted currency string including the currency symbol, or `nil` if formatting fails.
     public func currencyFormat(amount: Double) -> String? {
         let numberFormatter = NumberFormatter()
         let amountNSNumber = NSNumber(floatLiteral: amount)
@@ -75,9 +77,12 @@ open class Currency {
     }
 
 
-    /// Returns the formatted string for the given double
+    /// Returns the formatted currency string for the given amount without a currency symbol.
     ///
-    /// - Parameter amount: the amount to format to user Locale
+    /// Useful when the symbol is displayed separately in the UI.
+    ///
+    /// - Parameter amount: The amount to format using the currency's locale settings.
+    /// - Returns: A locale-formatted numeric string with no currency symbol, or `nil` if formatting fails.
     public func localeFormat(amount: Double) -> String? {
         let numberFormatter = NumberFormatter()
         let amountNSNumber = NSNumber(floatLiteral: amount)
@@ -88,7 +93,12 @@ open class Currency {
         numberFormatter.locale = Locale(identifier: languageSysname)
         return numberFormatter.string(from: amountNSNumber)?.trimmingCharacters(in: .whitespaces)
     }
-    /// - Parameter string: the amount to format into currency
+    /// Returns the formatted currency string for the given amount, omitting unnecessary trailing zeroes.
+    ///
+    /// Fractional digits are shown only when non-zero, up to a maximum of 2 decimal places.
+    ///
+    /// - Parameter amount: The amount to format.
+    /// - Returns: A formatted currency string, or `nil` if formatting fails.
     public func currencyFormatWithoutTrailingZeroes(amount: Double) -> String? {
         let numberFormatter = NumberFormatter()
         let amountNSNumber = NSNumber(floatLiteral: amount)
@@ -102,6 +112,13 @@ open class Currency {
         return numberFormatter.string(from: amountNSNumber)
     }
     
+    /// Returns the formatted currency string for the given amount with a configurable number of trailing zeroes.
+    ///
+    /// - Parameters:
+    ///   - amount: The amount to format.
+    ///   - minTrailingZeroes: The minimum number of fractional digits to display.
+    ///   - maxTrailingZeroes: The maximum number of fractional digits to display.
+    /// - Returns: A formatted currency string, or `nil` if formatting fails.
     public func currencyFormatWithTrailingZeroes(amount: Double, minTrailingZeroes: Int, maxTrailingZeroes: Int) -> String? {
         let numberFormatter = NumberFormatter()
         let amountNSNumber = NSNumber(floatLiteral: amount)
