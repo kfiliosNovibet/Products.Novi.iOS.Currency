@@ -233,9 +233,8 @@ final class CurrencyTests: XCTestCase {
         XCTAssertEqual(result, "2.130,60")
     }
 
-    func testLocaleFormatWithFullLocaleIdentifier() {
+    func testLocaleFormatWithShortLocaleIdentifier() {
         let currency = CurrencyMock(countryCode: "GR", languageSysname: "el")
-        currency.setLanguageSysname("el-GR")
         let result = currency.localeFormat(amount: 2130.60)
         XCTAssertEqual(result, "2.130,60")
     }
