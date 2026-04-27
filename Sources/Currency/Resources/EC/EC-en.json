@@ -1,5 +1,6 @@
 {
   "countryCode": "EC",
+  "currencyCode": "USD",
   "locale": "en-EC",
   "currencySymbol": "$",
   "symbolPosition": "start",

@@ -1,8 +1,9 @@
 {
     "countryCode": "BR",
+    "currencyCode": "BRL",
     "locale": "en-BR",
-    "currencySymbol": "€",
-    "symbolPosition": "end",
+    "currencySymbol": "R$",
+    "symbolPosition": "start",
     "decimalFormat": "%.2f",
     "decimalNotation": ".",
     "groupingNotation": ",",

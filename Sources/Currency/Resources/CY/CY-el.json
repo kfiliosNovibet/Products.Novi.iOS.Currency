@@ -1,6 +1,7 @@
 {
     "countryCode": "CY",
-    "locale": "el-GR",
+    "currencyCode": "EUR",
+    "locale": "el-CY",
     "currencySymbol": "€",
     "symbolPosition": "end",
     "decimalFormat": "%.2f",

@@ -1,5 +1,6 @@
 {
     "countryCode": "MX",
+    "currencyCode": "MXN",
     "locale": "es-MX",
     "currencySymbol": "$",
     "symbolPosition": "start",
